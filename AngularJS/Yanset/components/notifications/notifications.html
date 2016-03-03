@@ -1,0 +1,13 @@
+
+<div class="container notifications">
+    <h3 class="text-center">Notifications</h3>
+    <div class="col-md-offset-2 col-md-8">
+        <div class="list-group">
+            <a href="#/questionDetail/{{ notification.topic._id }}" class="list-group-item" ng-class="{'list-group-item-info': !notification.read}" ng-click="setNotificationRead($index)" ng-repeat="notification in notifications">user {{ notification.source.public.firstName }} {{ notification.type | notificationType }} {{ notification.topic.title }}<p am-time-ago="notification.createDate"></p></a>
+
+            <li class="list-group-item" ng-if="notifications.length==0">
+                <a>No new notifications</a>
+            </li>
+        </div>
+    </div>
+</div>

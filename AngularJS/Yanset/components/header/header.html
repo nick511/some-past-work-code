@@ -1,0 +1,47 @@
+<header ng-if="$location.path() !== '/home'">
+    <div class="logo"><a href="#/"><img src="assets/images/logo_white.png"></a></div>
+    <div class="navibar">
+        <ul class="navi">
+            <li>
+                <a href="#/jobbuzz">JobBuzz</a>
+            </li>
+            <li>
+                <a href="#/mentorPlan">MentorPlans</a>
+            </li>
+            <li>
+                <a href="#/aboutUs">About Us</a>
+            </li>
+            <li ng-show="!showUserMenu">
+                <a href="#/login">Login/Register</a>
+            </li>
+            <li ng-show="showUserMenu" class="user">
+                <a href="" data-toggle="dropdown">{{userName}}</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#/userDashboard">User Dashboard</a></li>
+                    <li><a href="#/accountSetting">Account Setting</a></li>
+                    <li class="divider"></li>
+                    <li><a href="" ng-click="logout()">Log Out</a></li>
+                </ul>
+            </li>
+            <li ng-show="showUserMenu" class="notifications">
+                <a href="" data-toggle="dropdown">
+                <span class="badge badge-info">{{ notifications.length }}</span>
+                <i class="icon-bell icon-white"></i></a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="notification in notifications">
+                        <a href="#/questionDetail/{{ notification.topic._id }}" ng-click="setNotificationRead($index)">user?? {{ notification.type | notificationType }} {{ notification.topic.title }}<p am-time-ago="notification.createDate"></p></a>
+                    </li>
+                    <li ng-if="notifications.length==0">
+                        <a>No Unread Notifications</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#/notifications">All Notifications</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <div class="search"><search-bar query-keyword="queryKeyword"></search-bar></div>
+    </div>
+    
+</header>
+
